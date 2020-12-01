@@ -8,5 +8,5 @@ My personal stats:
 ```
       -------Part 1--------   -------Part 2--------
 Day       Time  Rank  Score       Time  Rank  Score
-  1   00:07:12   400      0   00:09:10   816      0
+  1   00:07:12   400      0   00:09:10   816      0  # Server outage from 2-6m.
 ```
