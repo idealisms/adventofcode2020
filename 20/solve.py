@@ -2,6 +2,7 @@ import collections
 import itertools
 
 inp = open('input').read()
+# Rename to inp to use the test input.
 tinp = '''Tile 2311:
 ..##.#..#.
 ##..#.....
@@ -177,6 +178,8 @@ for name in corners:
   prod *= int(name)
 print('part1:', prod)
 
+# Ugh, using binary to represent the sides doesn't help us in
+# constructing the image. At least we have an adjacency map.
 def find_side(side_name, opposite_name):
   sides = list(adjacent[side_name] - {opposite_name})
   # print('fs', sides)
@@ -185,10 +188,10 @@ def find_side(side_name, opposite_name):
   else:
     return sides[1]
 
-# Make the top row.
+# Determine which tiles go in the top row.
 image = []
 row = []
-cur = list(corners)[0]
+cur = list(corners)[0]  # This will be the top left corner.
 while True:
   row.append(cur)
   adj = adjacent[cur]
@@ -223,7 +226,7 @@ for r in range(1, side_len):
 # for row in image:
 #   print(row)
 
-# Figure out the orientation of each tile starting with the top left.
+# Figure out the orientation of the top left and its two neighboring tiles.
 def rotate_cw(tile):
   new_tile = []
   for c in range(len(tile[0])):
@@ -306,6 +309,7 @@ for r in range(side_len):
         tiles[image[r][c]] = right
         break
 
+# The image itself doesn't include the border of each tile.
 full_image = []
 for r in range(side_len):
   for l in range(1, 9):
@@ -314,7 +318,7 @@ for r in range(side_len):
 # for row in full_image:
 #   print(row)
 
-# Count sea monsters.
+# Count sea monsters (we rotate the monster instead of the image).
 MONSTER = ['                  # ',  # Text editor was eating the trailing space.
            '#    ##    ##    ###',
            ' #  #  #  #  #  #   ']
